@@ -468,6 +468,7 @@ function getSelectedModel({
 				| "human-relay"
 				| "fake-ai"
 				| "kilocode-openrouter"
+				| "openai-assistant"
 			const id = apiConfiguration.apiModelId ?? anthropicDefaultModelId
 			const baseInfo = anthropicModels[id as keyof typeof anthropicModels]
 

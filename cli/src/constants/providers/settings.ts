@@ -582,6 +582,13 @@ export const getProviderSettings = (provider: ProviderName, config: ProviderSett
 				createFieldConfig("openAiNativeBaseUrl", config, "Default"),
 			]
 
+		case "openai-assistant":
+			return [
+				createFieldConfig("openAiAssistantApiKey", config),
+				createFieldConfig("openAiAssistantId", config),
+				createFieldConfig("openAiAssistantBaseUrl", config, "Default"),
+			]
+
 		case "bedrock":
 			return [
 				createFieldConfig("awsAccessKey", config),
@@ -791,6 +798,7 @@ export const PROVIDER_DEFAULT_MODELS: Record<ProviderName, string> = {
 	kilocode: "anthropic/claude-sonnet-4",
 	anthropic: "claude-3-5-sonnet-20241022",
 	"openai-native": "gpt-4o",
+	"openai-assistant": "assistant",
 	openrouter: "anthropic/claude-3-5-sonnet",
 	bedrock: "anthropic.claude-3-5-sonnet-20241022-v2:0",
 	gemini: "gemini-1.5-pro-latest",

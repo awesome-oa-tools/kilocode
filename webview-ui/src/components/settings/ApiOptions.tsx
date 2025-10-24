@@ -87,6 +87,7 @@ import {
 	Moonshot,
 	Ollama,
 	OpenAI,
+	OpenAIAssistant,
 	OpenAICompatible,
 	OpenRouter,
 	QwenCode,
@@ -584,6 +585,13 @@ const ApiOptions = ({
 					apiConfiguration={apiConfiguration}
 					setApiConfigurationField={setApiConfigurationField}
 					selectedModelInfo={selectedModelInfo}
+				/>
+			)}
+
+			{selectedProvider === "openai-assistant" && (
+				<OpenAIAssistant
+					apiConfiguration={apiConfiguration}
+					setApiConfigurationField={setApiConfigurationField}
 				/>
 			)}
 
