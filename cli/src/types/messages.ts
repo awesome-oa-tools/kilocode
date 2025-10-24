@@ -77,6 +77,7 @@ export type ProviderName =
 	| "lmstudio"
 	| "gemini"
 	| "openai-native"
+	| "openai-assistant"
 	| "mistral"
 	| "moonshot"
 	| "deepseek"

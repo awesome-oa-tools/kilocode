@@ -142,6 +142,7 @@ export const providerNames = [
 	"mistral",
 	"moonshot",
 	"openai-native",
+	"openai-assistant",
 	"qwen-code",
 	"roo",
 	// kilocode_change start
@@ -333,6 +334,12 @@ const openAiNativeSchema = apiModelIdProviderModelSchema.extend({
 	openAiNativeServiceTier: serviceTierSchema.optional(),
 })
 
+const openAiAssistantSchema = baseProviderSettingsSchema.extend({
+	openAiAssistantApiKey: z.string().optional(),
+	openAiAssistantBaseUrl: z.string().optional(),
+	openAiAssistantId: z.string().optional(),
+})
+
 const mistralSchema = apiModelIdProviderModelSchema.extend({
 	mistralApiKey: z.string().optional(),
 	mistralCodestralUrl: z.string().optional(),
@@ -507,6 +514,7 @@ export const providerSettingsSchemaDiscriminated = z.discriminatedUnion("apiProv
 	lmStudioSchema.merge(z.object({ apiProvider: z.literal("lmstudio") })),
 	geminiSchema.merge(z.object({ apiProvider: z.literal("gemini") })),
 	openAiNativeSchema.merge(z.object({ apiProvider: z.literal("openai-native") })),
+	openAiAssistantSchema.merge(z.object({ apiProvider: z.literal("openai-assistant") })),
 	ovhcloudSchema.merge(z.object({ apiProvider: z.literal("ovhcloud") })), // kilocode_change
 	mistralSchema.merge(z.object({ apiProvider: z.literal("mistral") })),
 	deepSeekSchema.merge(z.object({ apiProvider: z.literal("deepseek") })),
@@ -560,6 +568,7 @@ export const providerSettingsSchema = z.object({
 	...syntheticSchema.shape,
 	// kilocode_change end
 	...openAiNativeSchema.shape,
+	...openAiAssistantSchema.shape,
 	...mistralSchema.shape,
 	...deepSeekSchema.shape,
 	...deepInfraSchema.shape,
@@ -608,6 +617,7 @@ export const modelIdKeys = [
 	"glamaModelId",
 	"openRouterModelId",
 	"openAiModelId",
+	"openAiAssistantId",
 	"ollamaModelId",
 	"lmStudioModelId",
 	"lmStudioDraftModelId",
@@ -647,6 +657,7 @@ export const modelIdKeysByProvider: Record<TypicalProvider, ModelIdKey> = {
 	bedrock: "apiModelId",
 	vertex: "apiModelId",
 	"openai-native": "openAiModelId",
+	"openai-assistant": "openAiAssistantId",
 	ollama: "ollamaModelId",
 	lmstudio: "lmStudioModelId",
 	gemini: "apiModelId",
@@ -707,7 +718,7 @@ export const getApiProtocol = (provider: ProviderName | undefined, modelId?: str
  */
 
 export const MODELS_BY_PROVIDER: Record<
-	Exclude<ProviderName, "fake-ai" | "human-relay" | "gemini-cli" | "openai" | "gemini">, // kilocode_change: add gemini
+	Exclude<ProviderName, "fake-ai" | "human-relay" | "gemini-cli" | "openai" | "gemini" | "openai-assistant">, // kilocode_change: add gemini, openai-assistant
 	{ id: ProviderName; label: string; models: string[] }
 > = {
 	anthropic: {

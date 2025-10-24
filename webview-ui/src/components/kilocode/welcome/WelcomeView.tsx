@@ -32,6 +32,7 @@ const WelcomeView = () => {
 		}
 
 		setErrorMessage(undefined)
+
 		vscode.postMessage({ type: "upsertApiConfiguration", text: currentApiConfigName, apiConfiguration })
 	}, [apiConfiguration, currentApiConfigName])
 
@@ -59,7 +60,12 @@ const WelcomeView = () => {
 								{t("kilocode:settings.provider.login")}
 							</ButtonLink>
 						) : (
-							<ButtonPrimary onClick={handleSubmit}>{t("welcome:start")}</ButtonPrimary>
+							<ButtonPrimary
+								onClick={() => {
+									handleSubmit()
+								}}>
+								{t("welcome:start")}
+							</ButtonPrimary>
 						)}
 					</>
 				) : (
