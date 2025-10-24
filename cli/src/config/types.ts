@@ -141,6 +141,13 @@ type OpenAINativeProviderConfig = BaseProviderConfig & {
 	openAiNativeServiceTier?: "auto" | "default" | "flex" | "priority"
 }
 
+type OpenAIAssistantProviderConfig = BaseProviderConfig & {
+	provider: "openai-assistant"
+	openAiAssistantId?: string
+	openAiAssistantApiKey?: string
+	openAiAssistantBaseUrl?: string
+}
+
 type OpenAIProviderConfig = BaseProviderConfig & {
 	provider: "openai"
 	openAiModelId?: string
@@ -445,6 +452,7 @@ export type ProviderConfig =
 	| KilocodeProviderConfig
 	| AnthropicProviderConfig
 	| OpenAINativeProviderConfig
+	| OpenAIAssistantProviderConfig
 	| OpenAIProviderConfig
 	| OpenRouterProviderConfig
 	| OllamaProviderConfig

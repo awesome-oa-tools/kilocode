@@ -933,6 +933,7 @@
 		"modelId": "請提供有效的模型 ID。",
 		"modelSelector": "請提供有效的模型選擇器。",
 		"openAi": "請提供有效的基礎 URL、API 金鑰和模型 ID。",
+		"assistantId": "請提供有效的 OpenAI Assistant ID。",
 		"arn": {
 			"invalidFormat": "ARN 格式無效，請檢查格式要求。",
 			"regionMismatch": "警告：您 ARN 中的區域 ({{arnRegion}}) 與您選擇的區域 ({{region}}) 不符，可能導致存取問題。系統將使用 ARN 中指定的區域。"

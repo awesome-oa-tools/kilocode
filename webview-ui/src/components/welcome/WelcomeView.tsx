@@ -49,6 +49,7 @@ const WelcomeView = () => {
 		}
 
 		setErrorMessage(undefined)
+
 		vscode.postMessage({ type: "upsertApiConfiguration", text: currentApiConfigName, apiConfiguration })
 	}, [apiConfiguration, currentApiConfigName])
 
@@ -198,7 +199,11 @@ const WelcomeView = () => {
 							{t("welcome:importSettings")}
 						</VSCodeLink>
 					</div>
-					<VSCodeButton onClick={handleSubmit} appearance="primary">
+					<VSCodeButton
+						onClick={() => {
+							handleSubmit()
+						}}
+						appearance="primary">
 						{t("welcome:start")}
 					</VSCodeButton>
 					{errorMessage && <div className="text-vscode-errorForeground">{errorMessage}</div>}

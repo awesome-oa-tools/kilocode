@@ -67,6 +67,8 @@ function getModelIdForProvider(provider: ProviderConfig): string {
 			return provider.apiModelId || ""
 		case "openai-native":
 			return provider.apiModelId || ""
+		case "openai-assistant":
+			return provider.openAiAssistantId || ""
 		case "openrouter":
 			return provider.openRouterModelId || ""
 		case "ollama":

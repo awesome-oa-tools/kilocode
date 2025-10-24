@@ -73,6 +73,7 @@ export const PROVIDERS = [
 	{ value: "deepseek", label: "DeepSeek" },
 	{ value: "moonshot", label: "Moonshot" },
 	{ value: "openai-native", label: "OpenAI" },
+	{ value: "openai-assistant", label: "OpenAI Assistant" },
 	{ value: "openai", label: "OpenAI Compatible" },
 	{ value: "qwen-code", label: "Qwen Code" },
 	{ value: "vertex", label: "GCP Vertex AI" },
