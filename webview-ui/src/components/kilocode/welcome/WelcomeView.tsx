@@ -80,7 +80,12 @@ const WelcomeView = () => {
 								{t("kilocode:settings.provider.login")}
 							</ButtonLink>
 						) : (
-							<ButtonPrimary onClick={handleSubmit}>{t("welcome:start")}</ButtonPrimary>
+							<ButtonPrimary
+								onClick={() => {
+									handleSubmit()
+								}}>
+								{t("welcome:start")}
+							</ButtonPrimary>
 						)}
 					</>
 				) : (

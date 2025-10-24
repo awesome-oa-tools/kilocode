@@ -33,7 +33,12 @@ export function validateApiConfiguration(
 		return organizationAllowListError.message
 	}
 
-	return validateDynamicProviderModelId(apiConfiguration, routerModels)
+	const dynamicProviderError = validateDynamicProviderModelId(apiConfiguration, routerModels)
+	if (dynamicProviderError) {
+		return dynamicProviderError
+	}
+
+	return undefined
 }
 
 function validateModelsAndKeysProvided(apiConfiguration: ProviderSettings): string | undefined {
@@ -96,6 +101,14 @@ function validateModelsAndKeysProvided(apiConfiguration: ProviderSettings): stri
 		case "openai-native":
 			if (!apiConfiguration.openAiNativeApiKey) {
 				return i18next.t("settings:validation.apiKey")
+			}
+			break
+		case "openai-assistant":
+			if (!apiConfiguration.openAiAssistantApiKey) {
+				return i18next.t("settings:validation.apiKey")
+			}
+			if (!apiConfiguration.openAiAssistantId) {
+				return i18next.t("settings:validation.assistantId")
 			}
 			break
 		case "mistral":

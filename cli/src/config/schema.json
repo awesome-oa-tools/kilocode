@@ -229,6 +229,7 @@
 						"kilocode",
 						"anthropic",
 						"openai-native",
+						"openai-assistant",
 						"openrouter",
 						"bedrock",
 						"gemini",
@@ -434,6 +435,41 @@
 					"then": {
 						"properties": {
 							"openAiNativeApiKey": { "minLength": 10 }
+						}
+					}
+				},
+				{
+					"if": {
+						"properties": { "provider": { "const": "openai-assistant" } }
+					},
+					"then": {
+						"properties": {
+							"openAiAssistantApiKey": {
+								"type": "string",
+								"description": "OpenAI Assistant API key"
+							},
+							"openAiAssistantId": {
+								"type": "string",
+								"description": "OpenAI Assistant ID"
+							},
+							"openAiAssistantBaseUrl": {
+								"type": "string",
+								"description": "OpenAI Assistant base URL"
+							}
+						}
+					}
+				},
+				{
+					"if": {
+						"properties": {
+							"provider": { "const": "openai-assistant" },
+							"openAiAssistantApiKey": { "type": "string", "minLength": 1 }
+						},
+						"required": ["openAiAssistantApiKey"]
+					},
+					"then": {
+						"properties": {
+							"openAiAssistantApiKey": { "minLength": 10 }
 						}
 					}
 				},
