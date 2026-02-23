@@ -554,6 +554,38 @@ export namespace Provider {
       }
     },
     // kilocode_change end
+    // kilocode_change start - openai-assistant provider
+    "openai-assistant": async (input) => {
+      const config = await Config.get()
+      const providerConfig = config.provider?.["openai-assistant"]
+
+      const apiKey = await (async () => {
+        const envKey = Env.get("OPENAI_ASSISTANT_API_KEY")
+        if (envKey) return envKey
+        const auth = await Auth.get("openai-assistant")
+        if (auth?.type === "api") return auth.key
+        return providerConfig?.options?.apiKey as string | undefined
+      })()
+
+      if (!apiKey) return { autoload: false }
+
+      const assistantId = providerConfig?.options?.assistantId as string | undefined
+      const baseURL = (providerConfig?.options?.baseURL as string | undefined) ?? "https://api.openai.com/v1"
+
+      return {
+        autoload: true,
+        options: { apiKey, assistantId, baseURL },
+        async getModel(_sdk: any, _modelID: string, options?: Record<string, any>) {
+          const { OpenAIAssistantLanguageModel } = await import("./sdk/openai-assistant")
+          return new OpenAIAssistantLanguageModel("assistant", {
+            apiKey: options?.apiKey ?? apiKey,
+            assistantId: options?.assistantId ?? assistantId ?? "",
+            baseURL: options?.baseURL ?? baseURL,
+          })
+        },
+      }
+    },
+    // kilocode_change end
   }
 
   export const Model = z

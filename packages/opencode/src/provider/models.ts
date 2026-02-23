@@ -160,6 +160,33 @@ export namespace ModelsDev {
       }
     }
 
+    // kilocode_change start - Inject openai-assistant provider
+    if (!providers["openai-assistant"]) {
+      providers["openai-assistant"] = {
+        id: "openai-assistant",
+        name: "OpenAI Assistant",
+        env: ["OPENAI_ASSISTANT_API_KEY"],
+        api: "https://api.openai.com/v1",
+        npm: "@ai-sdk/openai-compatible",
+        models: {
+          assistant: {
+            id: "assistant",
+            name: "OpenAI Assistant",
+            release_date: "2024-01-01",
+            attachment: false,
+            reasoning: false,
+            temperature: false,
+            tool_call: true,
+            cost: { input: 0, output: 0 },
+            limit: { context: 128000, output: 16384 },
+            modalities: { input: ["text"], output: ["text"] },
+            options: {},
+          },
+        },
+      }
+    }
+    // kilocode_change end
+
     return providers
     // kilocode_change end
   }
